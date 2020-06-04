@@ -20,14 +20,11 @@
 		입금주: <%= kb.getName() %></br>
 		현재잔액: <%= kb.getMoney() %></br>
 	</p>
-	
 	<%
 		Account wb = new Account("우리은행","0010-015150-10","김춘춘",10000);
 		wb.deposit(10000);
 		wb.withdraw(5000);
 		wb.show(out);
-	
 	%>	
-
 </body>
 </html>
