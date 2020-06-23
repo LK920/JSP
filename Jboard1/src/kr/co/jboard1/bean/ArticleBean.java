@@ -13,7 +13,16 @@ public class ArticleBean {
 	private String uid;
 	private String regip;
 	private String rdate;
+	//추가필드
 	private String nick;
+	private FileBean fileBean;
+	
+	public FileBean getFileBean() {
+		return fileBean;
+	}
+	public void setFileBean(FileBean fileBean) {
+		this.fileBean = fileBean;
+	}
 	
 	public int getSeq() {
 		return seq;

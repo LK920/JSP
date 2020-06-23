@@ -30,6 +30,8 @@
 	
 	// 1, 2단계
 	Connection conn = DBConfig.getConnection();
+	//트랜젝션 시작(begin)
+	conn.setAutoCommit(false);
 		
 	// 3단계
 	PreparedStatement psmt = conn.prepareStatement(SQL.INSERT_ARTICLE);
@@ -64,7 +66,7 @@
 		
 		String newName = now + uid + ext; //날짜시간 계정 아이디 파일확장자
 		
-		//저장한 청부파일명 수정
+		//저장한 첨부파일명 수정
 		File oldFile = new File(realPath+"/"+fname);
 		File newFile = new File(realPath+"/"+newName);
 		
@@ -83,6 +85,8 @@
 		
 		
 	}
+	//트랜잭션끝(실질적인 쿼리 실행)
+	conn.commit();
 	// 6단계
 	
 	psmt.close();
