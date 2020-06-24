@@ -4,6 +4,10 @@ public class FileBean {
 	private int seq;
 	private int parent;
 	private String oldName;
+	private String newName;
+	private int download;
+	private String rdate;
+	
 	public int getSeq() {
 		return seq;
 	}
@@ -40,8 +44,6 @@ public class FileBean {
 	public void setRdate(String rdate) {
 		this.rdate = rdate;
 	}
-	private String newName;
-	private int download;
-	private String rdate;
+	
 
 }
