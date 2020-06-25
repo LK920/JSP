@@ -22,7 +22,13 @@ public class SQL {
 	public final static String SELECT_CHECK_EMAIL = "SELECT COUNT(`email`) FROM `JBOARD_MEMBER` WHERE `email`=?";
 	public final static String SELECT_CHECK_HP = "SELECT COUNT(`hp`) FROM `JBOARD_MEMBER` WHERE `hp`=?";
 	
-	//�Խù� ����
+	//게시판 관련
+	public final static String SELECT_LATEST_ARTICLE = "(SELECT `title`, `rdate`,`seq` FROM `JBOARD_ARTICLE` WHERE `cate`='grow' AND `parent`=0 ORDER BY `seq` DESC LIMIT 5) "
+			+ "UNION "
+			+ "(SELECT `title`, `rdate`,`seq` FROM `JBOARD_ARTICLE` WHERE `cate`='school' AND `parent`=0 ORDER BY `seq` DESC LIMIT 5) "
+			+ "UNION "
+			+ "(SELECT `title`, `rdate`,`seq` FROM `JBOARD_ARTICLE` WHERE `cate` = 'croptalk' AND `parent`=0 ORDER BY `seq` DESC LIMIT 5)";
+	
 	public final static String SELECT_TOTAL_COUNT = "SELECT COUNT(`seq`) FROM `JBOARD_ARTICLE`"
 			+ " WHERE `parent`=0 and `cate` = ?";
 	
