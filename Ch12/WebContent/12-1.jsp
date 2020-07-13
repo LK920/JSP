@@ -41,7 +41,14 @@
 		}
 		String[] people = {"김유신","김춘추","장보고","강감찬","이순신"};
 		for(String person : people){
-			out.print(person+", ");
+			out.print("<i>"+person+", </i>");
+		}
+		
+		int sum = 0;
+		
+		for(int k = 1; k<=10 ; k++){
+			sum += k ;
+			out.println("<p>1부터 10까지 합 : "+sum+" </p>");
 		}
 		
 	%>
@@ -82,16 +89,23 @@
 		<p>${i}.Hello JSTL!!</p>
 	</c:forEach>
 	
-	
-	
-	
+	<c:set var="people">김유신,김춘추,장보고,강감찬,이순신</c:set>
+	<c:forEach var="person" items="${people}">
+		<i>${person},</i>
+	</c:forEach>
 	
 	<c:forEach var="x" begin="2" end="3">
 		<c:forEach var="y" begin="1" end="9">
 			<p>${x} x ${y } = ${x*y}</p>
 		</c:forEach>
 	</c:forEach>
-
+	<p>1에서  10까지 합 구하는 것</p>
+	<c:set var="sum" value="0"/>
+	<c:forEach var="k" begin="1" end="10">
+		<c:set var="sum" value="${sum = sum+k}"/>  
+	</c:forEach>
+	<p>1부터 10까지의 합 : ${sum}</p>
+	
 
 </body>
 </html>
