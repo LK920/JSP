@@ -4,12 +4,20 @@
 <head>
     <meta charset="UTF-8">
     <title>회원가입</title>
-    <link rel="stylesheet" href="../css/style.css"/>
+    <link rel="stylesheet" href="/Jboard2/css/style.css"/>
+    <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+    <script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+    <script src="/Jboard2/js/checkUid.js"></script>
+    <script>
+    
+    </script>
 </head>
 <body>
     <div id="wrapper">
         <section id="user" class="register">
-            <form action="#" method="POST">
+            <form action="/Jboard2/user/register.do" method="POST">
                 <table border="1">
                     <caption>사이트 이용정보 입력</caption>
                     <tr>
@@ -79,7 +87,7 @@
                 </table>
 
                 <div>
-                    <a href="./login.html" class="btnCancel">취소</a>
+                    <a href="/Jboard2/user/login.html" class="btnCancel">취소</a>
                     <input type="submit"   class="btnJoin" value="회원가입"/>
                 </div>
 

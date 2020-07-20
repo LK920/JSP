@@ -9,7 +9,7 @@ public class SQL {
 			+ "`pass`= PASSWORD(?), "
 			+ "`name`= ?, "
 			+ "`nick`= ?, "
-			+ "`email`= , "
+			+ "`email`= ? , "
 			+ "`hp`= ?, "
 			+ "`zip`= ?, "
 			+ "`addr1`= ?, "
