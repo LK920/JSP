@@ -10,7 +10,47 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
     <script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
     <script src="/Jboard2/js/checkUid.js"></script>
+    <script src="/Jboard2/js/checkPass.js"></script>
     <script>
+    
+    	//유효성(validation) 검증
+    	$('.register > form' ).submit(function(){
+    		
+    		
+    		//아이디 중복여부 확인
+			if(!isUidOk){
+				alert('아이디를 다시 확인 하십시오')
+				return false;
+    		}
+    		//비밀번호 일치여부 확인
+			if(!isPassOk){
+				alert('비밀번호를 다시 확인 하십시오')
+				return false;
+    		}
+			//이름 한글 여부 확인
+			if(false){
+				alert('이름을 다시 확인 하십시오')
+				return false;
+    		}
+    		//별명 중복여부 확인
+			if(false){
+				alert('아이디를 다시 확인 하십시오')
+				return false;
+    		}
+    		//이메일 중복여부 확인
+			if(false){
+				alert('이메일을 다시 확인 하십시오')
+				return false;
+    		}
+    		//휴대폰 중복여부 확인
+			if(false){
+				alert('휴대폰을 다시 확인 하십시오')
+				return false;
+    		}
+    		
+    		//최종 데이터 확인 완료    		
+    		return false;
+    	});
     
     </script>
 </head>
