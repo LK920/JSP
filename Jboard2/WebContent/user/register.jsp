@@ -12,7 +12,8 @@
     <script src="/Jboard2/js/checkUid.js"></script>
     <script src="/Jboard2/js/checkPass.js"></script>
     <script>
-    
+    $(function(){
+    	
     	//유효성(validation) 검증
     	$('.register > form' ).submit(function(){
     		
@@ -49,8 +50,12 @@
     		}
     		
     		//최종 데이터 확인 완료    		
-    		return false;
+    		return true;
     	});
+    	
+    });
+    
+    	
     
     </script>
 </head>
@@ -127,7 +132,7 @@
                 </table>
 
                 <div>
-                    <a href="/Jboard2/user/login.html" class="btnCancel">취소</a>
+                    <a href="/Jboard2/user/login.do" class="btnCancel">취소</a>
                     <input type="submit"   class="btnJoin" value="회원가입"/>
                 </div>
 

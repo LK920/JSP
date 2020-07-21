@@ -89,10 +89,13 @@ public class MainController extends HttpServlet {
 	
 	private void requestProc(HttpServletRequest req, HttpServletResponse resp) throws Exception {
 		
-		String path = req.getContextPath(); //rootpath ø©±‚º± Ch18
-		String uri = req.getRequestURI();  // /Ch18/hello.do
+		String path = req.getContextPath();
+		 //rootpath ø©±‚º± Jboard2
+		String uri = req.getRequestURI(); 
+		 // /Jboard2/*.do
 		
-		String action = uri.substring(path.length()); // /hello.do
+		String action = uri.substring(path.length()); 
+		// /*.do
 		
 		//∏ ø° ¿˙¿Âµ» ∞¥√º∏¶ ≤®≥ø
 		CommonService instance = (CommonService) instances.get(action);
