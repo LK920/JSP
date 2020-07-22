@@ -7,6 +7,8 @@ import java.sql.ResultSet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.google.gson.JsonObject;
+
 import kr.jboard2.config.DBConfig;
 import kr.jboard2.config.SQL;
 import kr.jboard2.controller.CommonService;
@@ -16,11 +18,11 @@ public class CommentService implements CommonService {
 	@Override
 	public String requestProc(HttpServletRequest req, HttpServletResponse resp) throws Exception {
 		
-		String parent 	= req.getParameter("parent");
-		String uid 		= req.getParameter("uid");
-		String comment 	= req.getParameter("comment");
-		String regip 	= req.getRemoteAddr();
-		
+
+		String parent  = req.getParameter("parent");
+		String comment = req.getParameter("comment");
+		String uid     = req.getParameter("uid");
+		String regip   = req.getRemoteAddr();
 		
 		Connection conn = DBConfig.getConnection();
 		PreparedStatement psmt = conn.prepareStatement(SQL.INSERT_COMMENT);
@@ -29,13 +31,15 @@ public class CommentService implements CommonService {
 		psmt.setString(3, uid);
 		psmt.setString(4, regip);
 		
-		psmt.executeUpdate();
-		
+		int result = psmt.executeUpdate();
 		psmt.close();
 		conn.close();
 		
+		JsonObject json = new JsonObject();
+		json.addProperty("result", result);
 		
-		return "redirect:/Jboard2/view.do?seq="+parent;
+		
+		return "json:"+json.toString();
 	}
 
 }
