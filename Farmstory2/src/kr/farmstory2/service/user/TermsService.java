@@ -7,31 +7,21 @@ import java.sql.Statement;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import kr.farmstory2.bean.TermsBean;
 import kr.farmstory2.config.DBConfig;
 import kr.farmstory2.config.SQL;
 import kr.farmstory2.controller.CommonService;
+import kr.farmstory2.dao.UserDAO;
+import kr.farmstory2.vo.TermsVO;
 
 public class TermsService implements CommonService {
 
 	@Override
 	public String requestProc(HttpServletRequest req, HttpServletResponse resp) throws Exception {
 		
-		Connection conn = DBConfig.getConnection();
-		Statement stmt = conn.createStatement();
-		ResultSet rs = stmt.executeQuery(SQL.SELECT_TERMS);
+		UserDAO dao = UserDAO.getInstance();
+		TermsVO vo = dao.getTerms();
 		
-		TermsBean tb = new TermsBean();
-		if(rs.next()) {
-			tb.setTerms(rs.getString(1));
-			tb.setPrivacy(rs.getString(2));
-		}
-		
-		rs.close();
-		stmt.close();
-		conn.close();
-		
-		req.setAttribute("tb", tb);
+		req.setAttribute("vo", vo);
 		
 		return "/user/terms.jsp";
 	}
