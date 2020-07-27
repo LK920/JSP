@@ -1,16 +1,16 @@
-package kr.farmstroy2.service.board;
+package kr.farmstory2.service.user;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import kr.farmstory2.controller.CommonService;
 
-public class ModifyService implements CommonService {
+public class LoginService implements CommonService {
 
 	@Override
 	public String requestProc(HttpServletRequest req, HttpServletResponse resp) throws Exception {
 		
-		return "/board/modify.jsp";
+		return "/user/login.jsp";
 	}
 
 }

@@ -1,16 +1,16 @@
-package kr.farmstroy2.service.introduction;
+package kr.farmstory2.service.user;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import kr.farmstory2.controller.CommonService;
 
-public class GreetingService implements CommonService {
+public class RegisterService implements CommonService {
 
 	@Override
 	public String requestProc(HttpServletRequest req, HttpServletResponse resp) throws Exception {
 		
-		return "/introduction/greeting.jsp";
+		return "/user/register.jsp";
 	}
 
 }

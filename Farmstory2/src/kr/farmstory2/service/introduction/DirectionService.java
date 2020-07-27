@@ -1,16 +1,16 @@
-package kr.farmstroy2.service.board;
+package kr.farmstory2.service.introduction;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import kr.farmstory2.controller.CommonService;
 
-public class ListService implements CommonService {
+public class DirectionService implements CommonService {
 
 	@Override
 	public String requestProc(HttpServletRequest req, HttpServletResponse resp) throws Exception {
 		
-		return "/board/list.jsp";
+		return "/introduction/direction.jsp";
 	}
 
 }
