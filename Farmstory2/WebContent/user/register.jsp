@@ -2,7 +2,7 @@
 <%@ include file="../_header.jsp" %>
 
 <section id="user" class="register">
-    <form action="/Jboard2/user/register.do" method="POST">
+    <form action="/Farmstory2/user/register.do" method="POST">
         <table border="1">
             <caption>사이트 이용정보 입력</caption>
             <tr>

@@ -9,52 +9,33 @@ import javax.servlet.http.HttpServletResponse;
 import kr.farmstory2.config.DBConfig;
 import kr.farmstory2.config.SQL;
 import kr.farmstory2.controller.CommonService;
+import kr.farmstory2.dao.UserDAO;
+import kr.farmstory2.vo.MemberVO;
 
 public class RegisterService implements CommonService {
 
 	@Override
 	public String requestProc(HttpServletRequest req, HttpServletResponse resp) throws Exception {
 		
-if(req.getMethod().equals("POST")) {
+		if(req.getMethod().equals("POST")) {
 			
-			//파라미터 수신
-			String uid 	 = req.getParameter("uid");
-			String pass1 = req.getParameter("pass1");
-			String pass2 = req.getParameter("pass2");
-			String name  = req.getParameter("name");
-			String nick  = req.getParameter("nick");
-			String email = req.getParameter("email");
-			String hp 	 = req.getParameter("hp");
-			String zip 	 = req.getParameter("zip");
-			String addr1 = req.getParameter("addr1");
-			String addr2 = req.getParameter("addr2");
-			String regip = req.getRemoteAddr();
-
-			//1,2단계
-			Connection conn = DBConfig.getConnection(); 
+			//userDAO에서 사용할 파라미터를  vo객체에 넣어준다.
+			MemberVO vo = new MemberVO();
+			vo.setUid(req.getParameter("uid"));
+			vo.setPass(req.getParameter("pass1"));
+			vo.setName(req.getParameter("name"));
+			vo.setNick(req.getParameter("nick"));
+			vo.setEmail(req.getParameter("email"));
+			vo.setHp(req.getParameter("hp"));
+			vo.setZip(req.getParameter("zip"));
+			vo.setAddr1(req.getParameter("addr1"));
+			vo.setAddr2(req.getParameter("addr2"));
+			vo.setRegip(req.getRemoteAddr());
 			
-			//3단계
-			PreparedStatement psmt = conn.prepareStatement(SQL.INSERT_MEMBER);
-			psmt.setString(1, uid);
-			psmt.setString(2, pass1);
-			psmt.setString(3, name);
-			psmt.setString(4, nick);
-			psmt.setString(5, email);
-			psmt.setString(6, hp);
-			psmt.setString(7, zip);
-			psmt.setString(8, addr1);
-			psmt.setString(9, addr2);
-			psmt.setString(10, regip);
-			//4단계
-			psmt.executeUpdate();
-			//5단계
-			//6단계
-			psmt.close();
-			conn.close();
+			UserDAO dao = UserDAO.getInstance();
+			dao.registUser(vo);
 			
-			//리다이렉트
-			
-			return "redirect:/Jboard2/user/login.do";
+			return "redirect:/Farmstory2/user/login.do";
 			
 		}else {
 			return "/user/register.jsp";
