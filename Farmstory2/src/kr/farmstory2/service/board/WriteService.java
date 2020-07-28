@@ -13,6 +13,8 @@ public class WriteService implements CommonService {
 	@Override
 	public String requestProc(HttpServletRequest req, HttpServletResponse resp) throws Exception {
 		
+		String group = req.getParameter("group");
+		
 		if(req.getMethod().equals("POST")) {
 			String title = req.getParameter("title");
 			String content = req.getParameter("content");
@@ -34,11 +36,11 @@ public class WriteService implements CommonService {
 			BoardDAO dao = BoardDAO.getInstance();
 			dao.insertArticle(vo);
 			
-			return "redirect:/Farmstory2/board/list.do?";
+			return "redirect:/Farmstory2/board/list.do?group="+group+"&cate="+cate;
 		}else {
 			
 			String cate =  req.getParameter("cate");
-			String group = req.getParameter("group");
+			
 			req.setAttribute("cate", cate);
 			req.setAttribute("group", group);
 			

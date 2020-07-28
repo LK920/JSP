@@ -6,6 +6,7 @@
     <article>
         <form action="/Farmstory2/board/write.do" method="post">
         <input type="hidden" name="cate" value="${cate}"/>
+        <input type="hidden" name="group" value="${group}"/>
         <input type="hidden" name="uid" value="${member.uid}"/>
             <table>
                 <tr>
@@ -24,7 +25,7 @@
                 </tr>
             </table>
             <div>
-                <a href="/Farmstory2/board/list.do?" class="btnCancel">취소</a>
+                <a href="/Farmstory2/board/list.do?cate=${cate}&group=${group}" class="btnCancel">취소</a>
                 <input type="submit"  class="btnWrite" value="작성완료">
             </div>
         </form>
