@@ -15,6 +15,7 @@ public class ListService implements CommonService {
 	public String requestProc(HttpServletRequest req, HttpServletResponse resp) throws Exception {
 		
 		String cate = req.getParameter("cate");
+		String group = req.getParameter("group");
 		String pg = req.getParameter("pg");
 		
 		//페이지 관련 변수 선언
@@ -37,6 +38,7 @@ public class ListService implements CommonService {
 		List<ArticleVO> articles = dao.getArticles(cate, startLimit);
 		
 		req.setAttribute("cate", cate);
+		req.setAttribute("group", group);
 		req.setAttribute("articles", articles);
 		
 		req.setAttribute("lastPage", lastPage);

@@ -38,7 +38,9 @@ public class WriteService implements CommonService {
 		}else {
 			
 			String cate =  req.getParameter("cate");
+			String group = req.getParameter("group");
 			req.setAttribute("cate", cate);
+			req.setAttribute("group", group);
 			
 			return "/board/write.jsp";
 		}
