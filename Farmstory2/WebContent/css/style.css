@@ -685,6 +685,10 @@ footer > p > span {
 #board.view > .commentList > article > div {
     text-align: right;
 }
+#board.view > .commentList > article > div > .off {
+	display : none;
+	
+}
 
 #board.view > .commentList > .empty {
     padding: 20px 0;
