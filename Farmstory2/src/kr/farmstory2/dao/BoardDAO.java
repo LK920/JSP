@@ -3,6 +3,7 @@ package kr.farmstory2.dao;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -18,6 +19,30 @@ public class BoardDAO  {
 	}
 	
 	private BoardDAO() {}
+	
+	public List<ArticleVO> getLatest() throws Exception {
+		
+		Connection conn = DBConfig.getConnection();
+		Statement stmt = conn.createStatement();
+		ResultSet rs = stmt.executeQuery(SQL.SELECT_LATEST_ARTICLE);
+		
+		List<ArticleVO> latestList = new ArrayList<ArticleVO>();
+		
+		while(rs.next()) {
+			ArticleVO article = new ArticleVO();
+			article.setSeq(rs.getInt(1));
+			article.setTitle(rs.getString(2));
+			article.setRdate(rs.getString(3).substring(2, 10));
+			
+			latestList.add(article);
+		}
+		
+		rs.close();
+		stmt.close();
+		conn.close();
+		
+		return latestList;
+	}
 	
 	public int getTotalArticle(String cate) throws Exception {
 		Connection conn = DBConfig.getConnection();
@@ -116,7 +141,7 @@ public class BoardDAO  {
 		psmt.setString(3, vo.getContent());
 		psmt.setString(4, vo.getUid());
 		psmt.setString(5, vo.getRegip());
-		
+
 		int result = psmt.executeUpdate();
 		
 		psmt.close();
@@ -130,43 +155,46 @@ public class BoardDAO  {
 		Connection conn = DBConfig.getConnection();
 		PreparedStatement psmt = conn.prepareStatement(SQL.SELECT_COMMENTS);
 		psmt.setString(1, parent);
-
-		ResultSet rs = psmt.executeQuery();
 		
-		ArticleVO comment = new ArticleVO();
+		ResultSet rs = psmt.executeQuery();
 		List<ArticleVO> comments = new ArrayList<>();
 		
 		while(rs.next()) {
-			 comment.setSeq(rs.getInt(1));
-			 comment.setContent(rs.getString(6));
-			 comment.setUid(rs.getString(9));
-			 comment.setRegip(rs.getString(10));
-			 comment.setRdate(rs.getString(11));
-			 comment.setNick(rs.getString(12));
-			 
-			 comments.add(comment);
+			ArticleVO comment = new ArticleVO();
+			
+			comment.setSeq(rs.getInt(1));
+			comment.setContent(rs.getString(6));
+			comment.setUid(rs.getString(9));
+			comment.setRegip(rs.getString(10));
+			comment.setRdate(rs.getString(11));
+			comment.setNick(rs.getString(12));
+			
+			comments.add(comment);
 		}
+		
 		rs.close();
 		psmt.close();
 		conn.close();
 		
-		return comments;
+		return comments;	
 		
 	}
-	
-	public void deleteComment(String seq) throws Exception{
+	public int modifyComment(String content, String seq) throws Exception{
 		
 		Connection conn = DBConfig.getConnection();
-		PreparedStatement psmt =  conn.prepareStatement(SQL.DELETE_COMMENT);
-		psmt.setString(1, seq);
+		PreparedStatement psmt = conn.prepareStatement(SQL.UPDATE_COMMENT);
+		psmt.setString(1, content);
+		psmt.setString(2, seq);
 		
-		psmt.executeUpdate();
-		
+		int result = psmt.executeUpdate();
 		psmt.close();
 		conn.close();
 		
+		return result;
+		
 		
 	}
+	
 	
 	public void insertArticle(ArticleVO vo) throws Exception {
 		
